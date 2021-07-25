@@ -11,12 +11,12 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  name: "TheTitles",
+  name: 'TheTitles',
 
-  props: ["limitDays"],
+  props: ['limitDays'],
 
   data() {
     return {
@@ -24,22 +24,24 @@ export default {
       limitArticles: 8,
       pluralWordNumber: String,
       articles: {},
-    };
+    }
   },
 
   methods: {
     saveRightArray(filteredArray) {
-      Object.create([`${this.limitDays}`]).push(this.articles); // Create object and push them into articles
-      this.articles[`${this.limitDays}`] = filteredArray; // Created object fills with data
-      this.articles[`${this.limitDays}`].sort((x, y) => { // Sort object from height to low views
-        return y.views - x.views;
-      });
+      Object.create([`${this.limitDays}`]).push(this.articles) // Create object and push them into articles
+      this.articles[`${this.limitDays}`] = filteredArray // Created object fills with data
+      this.articles[`${this.limitDays}`].sort((x, y) => {
+        // Sort object from height to low views
+        return y.views - x.views
+      })
     },
 
-    plural() { // Make word plural if condition is false
-      this.limitDays == 1 
-        ? (this.pluralWordNumber = "")
-        : (this.pluralWordNumber = "s"); 
+    plural() {
+      // Make word plural if condition is false
+      this.limitDays == 1
+        ? (this.pluralWordNumber = '')
+        : (this.pluralWordNumber = 's')
     },
 
     getRequest() {
@@ -48,57 +50,58 @@ export default {
 
         this.responseDataFromAPI == true // If there is something in the array, clean it
           ? (this.responseDataFromAPI.length = 0)
-          : false; 
+          : false
 
         axios({
           // Ajax request
-          method: "GET",
+          method: 'GET',
           url: `https://public-api.aktuality.sk/articles/mostread/aktuality?limit=${this.limitArticles}&day${this.pluralWordNumber}=${this.limitDays}`,
         })
           .then((response) => {
-            this.responseDataFromAPI = response.data; // Save data
+            this.responseDataFromAPI = response.data // Save data
           })
           .catch(() => {
             if (this.limitDays < 2) {
-              alert( // If an error occurs
+              alert(
+                // If an error occurs
                 `Za posledný ${this.limitDays} deň neboli nájdené najčítanejšie články`
-              ); 
+              )
             } else {
               alert(
                 `Za posledné ${this.limitDays} dni neboli nájdené najčítanejšie články`
-              );
+              )
             }
-          });
+          })
       }
     },
   },
 
   mounted() {
-    this.plural();
-    this.getRequest();
+    this.plural()
+    this.getRequest()
   },
 
   watch: {
     limitDays() {
-      this.plural();
-      this.getRequest();
+      this.plural()
+      this.getRequest()
     },
 
     responseDataFromAPI() {
-      let responseFiltered = []; // Create new object
+      let responseFiltered = [] // Create new object
 
-        // Adds specific values from the response to the request ( title, url and views)
+      // Adds specific values from the response to the request ( title, url and views)
       this.responseDataFromAPI.items.forEach((item) => {
         responseFiltered.push({
           title: item.title,
           url: item.url,
           views: item.views,
-        });
-      });
-      this.saveRightArray(responseFiltered); // Send filled object
+        })
+      })
+      this.saveRightArray(responseFiltered) // Send filled object
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -139,7 +142,7 @@ export default {
     padding-right: 0.5rem;
     font-weight: bold;
     text-align: right;
-    content: counter(item) ".";
+    content: counter(item) '.';
   }
 }
 </style>

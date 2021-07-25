@@ -21,10 +21,10 @@
 </template>
 
 <script>
-import TheTitles from "./components/TheTitles.vue";
+import TheTitles from './components/TheTitles.vue'
 
 export default {
-  name: "App",
+  name: 'App',
 
   components: {
     TheTitles,
@@ -32,31 +32,32 @@ export default {
 
   data() {
     return {
-      links: document.getElementsByClassName("card__link"),
+      links: document.getElementsByClassName('card__link'),
       limitDays: 1,
-    };
+    }
   },
 
   mounted() {
-    this.links = [...this.links]; // Create object from htmlcollection
+    this.links = [...this.links] // Create object from htmlcollection
 
-    this.links.forEach((link) => { 
-      link.addEventListener("click", (e) => {
-        this.limitDays = e.target.id; // Get target id and save it to variable
+    this.links.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        this.limitDays = e.target.id // Get target id and save it to variable
 
-        this.links.forEach((element) => { // If element contain class card__link--active, remove it in loop
-          element.classList.contains("card__link--active")
-            ? element.classList.remove("card__link--active")
-            : false;
-        });
+        this.links.forEach((element) => {
+          // If element contain class card__link--active, remove it in loop
+          element.classList.contains('card__link--active')
+            ? element.classList.remove('card__link--active')
+            : false
+        })
 
-        !e.target.classList.contains("card__link--active") //If element do not contain card__link--active, add it
-          ? e.target.classList.add("card__link--active")
-          : false;
-      });
-    });
+        !e.target.classList.contains('card__link--active') //If element do not contain card__link--active, add it
+          ? e.target.classList.add('card__link--active')
+          : false
+      })
+    })
   },
-};
+}
 </script>
 
 <style lang="scss">
