@@ -1,4 +1,4 @@
-# newspaper-articles
+# Zadanie pre Aktuality.sk
 
 ## Project setup
 ```
