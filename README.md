@@ -3,7 +3,7 @@
 ### Pre nainštalovanie všetkých potrebných balíkov
 npm install
 
-### Naštartuje server
+### Pre nakopnutie servera
 npm run serve
 ```
 
