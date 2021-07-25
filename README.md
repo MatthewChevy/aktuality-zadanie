@@ -1,10 +1,10 @@
 # Zadanie pre Aktuality.sk
 
-## Pre nainštalovanie všetkých potrebných balíkov
+### Pre nainštalovanie všetkých potrebných balíkov
 npm install
 ```
 ```
-## Naštartuje server
+### Naštartuje server
 npm run serve
 ```
 
