@@ -50,8 +50,8 @@ export default {
             ? element.classList.remove('card__link--active')
             : false
         })
-
-        !e.target.classList.contains('card__link--active') //If element do not contain card__link--active, add it
+        //If element do not contain card__link--active, add it
+        !e.target.classList.contains('card__link--active') 
           ? e.target.classList.add('card__link--active')
           : false
       })

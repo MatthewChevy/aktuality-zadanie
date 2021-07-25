@@ -31,8 +31,9 @@ export default {
     saveRightArray(filteredArray) {
       Object.create([`${this.limitDays}`]).push(this.articles) // Create object and push them into articles
       this.articles[`${this.limitDays}`] = filteredArray // Created object fills with data
-      this.articles[`${this.limitDays}`].sort((x, y) => {
-        // Sort object from height to low views
+      
+      // Sort object from height to low views
+      this.articles[`${this.limitDays}`].sort((x, y) => { 
         return y.views - x.views
       })
     },
@@ -45,8 +46,8 @@ export default {
     },
 
     getRequest() {
-      if (this.articles[`${this.limitDays}`] == undefined) {
         // If there is a array with the same name in the object, do nothing
+      if (this.articles[`${this.limitDays}`] == undefined) {
 
         this.responseDataFromAPI == true // If there is something in the array, clean it
           ? (this.responseDataFromAPI.length = 0)
